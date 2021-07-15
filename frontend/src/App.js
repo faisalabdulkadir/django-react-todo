@@ -1,19 +1,42 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import './css/styles.css'
+import { BiListPlus } from 'react-icons/bi'
+import { MdDelete, MdEdit } from 'react-icons/md'
 
 function App() {
+  const [taskList, setTaskList] = useState([]);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/todos', {
+      'method': 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .then(response => setTaskList(response))
+      .catch(error => console.log(error))
+  }, [])
   return (
-    <div className="App">
-      <div class="wrapper">
+    <div>
+      <div className="wrapper">
         <header>Todo App</header>
-        <div class="inputField">
+        <div className="inputField">
           <input type="text" placeholder="Add your new todo" />
-          <button><i class="fas fa-plus"></i></button>
+          <button><i className="fas fa-plus"><BiListPlus /></i></button>
         </div>
-        <ul class="todoList">
-          {/* <!-- data are comes from local storage --> */}
+        <ul className="todoList">
+          {taskList.map((task) => (
+            <li key={task.id}>{task.title}
+
+                <i className="icon-edit"><MdEdit /></i>
+                <i className="icon-delete"><MdDelete /></i>
+            </li>
+          ))}
         </ul>
-        <div class="footer">
-          <span>You have <span class="pendingTasks"></span> pending tasks</span>
+        <div className="footer">
+          <span>You have ( <span className="pendingTasks">{taskList.length}</span> ) pending tasks</span>
           <button>Clear All</button>
         </div>
       </div>
