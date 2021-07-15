@@ -75,8 +75,9 @@ body{
   max-height: 250px;
   overflow-y: auto;
 }
-.todoList li{
-  position: relative;
+.todoList{
+  li {
+      position: relative;
   list-style: none;
   height: 45px;
   line-height: 45px;
@@ -86,8 +87,9 @@ body{
   padding: 0 15px;
   cursor: default;
   overflow: hidden;
+  }
 }
-.todoList li .icon{
+.todoList li .icon-delete{
   position: absolute;
   right: -45px;
   background: #e74c3c;
@@ -98,9 +100,23 @@ body{
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.todoList li:hover .icon{
+.todoList li .icon-edit{
+    position: absolute;
+    right: -45px;
+    background: green;
+    width: 45px;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+.todoList li:hover .icon-delete{
   right: 0px;
 }
+.todoList li:hover .icon-edit{
+    right: 3em;
+  }
 .wrapper .footer{
   display: flex;
   width: 100%;
@@ -127,4 +143,7 @@ body{
 .footer button.active{
   opacity: 1;
   pointer-events: auto;
+}
+.footer .pendingTasks{
+    color: green;
 }

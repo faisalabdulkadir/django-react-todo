@@ -112,7 +112,7 @@ body {
   overflow: hidden;
 }
 
-.todoList li .icon {
+.todoList li .icon-delete {
   position: absolute;
   right: -45px;
   background: #e74c3c;
@@ -125,8 +125,25 @@ body {
   transition: all 0.2s ease;
 }
 
-.todoList li:hover .icon {
+.todoList li .icon-edit {
+  position: absolute;
+  right: -45px;
+  background: green;
+  width: 45px;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.todoList li:hover .icon-delete {
   right: 0px;
+}
+
+.todoList li:hover .icon-edit {
+  right: 3em;
 }
 
 .wrapper .footer {
@@ -167,5 +184,9 @@ body {
 .footer button.active {
   opacity: 1;
   pointer-events: auto;
+}
+
+.footer .pendingTasks {
+  color: green;
 }
 /*# sourceMappingURL=styles.css.map */
