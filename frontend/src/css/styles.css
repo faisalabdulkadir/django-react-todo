@@ -142,6 +142,11 @@ body {
   right: 0px;
 }
 
+.todoList i:hover {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
 .todoList li:hover .icon-edit {
   right: 3em;
 }

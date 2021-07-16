@@ -114,6 +114,13 @@ body{
 .todoList li:hover .icon-delete{
   right: 0px;
 }
+.todoList {
+    i {
+        &:hover {
+            transform: scale(1.5);
+        }
+      }
+}
 .todoList li:hover .icon-edit{
     right: 3em;
   }
