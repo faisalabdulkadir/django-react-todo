@@ -1,11 +1,27 @@
 import React, { useState } from 'react'
-function Form() {
+import APIService from '../APIService'
+
+function Form({ taskInformation }) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
 
   const readyToSave = title && description && date && time
+
+  const addTask = () => {
+    onsubmit = (e) => {
+      e.preventDefault()
+    }
+    APIService.InsertTask({ title, description, date, time })
+      .then(resp => taskInformation(resp))
+      .catch(error => console.log('error adding task'))
+      setTitle('');
+      setDescription('');
+      setTime('');
+      setDate('');
+
+  }
 
   return (
     <div className="inputField">
@@ -41,6 +57,7 @@ function Form() {
         />
         <button
           className={readyToSave ? "save-button active" : "save-button"}
+          onClick={addTask}
         >
           Save Task
         </button>
