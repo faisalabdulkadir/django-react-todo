@@ -243,6 +243,11 @@ body {
   height: 45px;
 }
 
+.save-button.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .inputField label {
   display: block;
 }
