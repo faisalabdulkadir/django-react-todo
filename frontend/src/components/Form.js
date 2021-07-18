@@ -5,6 +5,8 @@ function Form() {
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
 
+  const readyToSave = title && description && date && time
+
   return (
     <div className="inputField">
       <form>
@@ -38,7 +40,7 @@ function Form() {
           onChange={e => setTime(e.target.value)}
         />
         <button
-          className="save-button"
+          className={readyToSave ? "save-button active" : "save-button"}
         >
           Save Task
         </button>
