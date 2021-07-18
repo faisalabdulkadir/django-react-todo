@@ -49,10 +49,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   height: auto;
+  padding: 0;
 }
 
 .inputField input {
-  width: 85%;
+  width: 100%;
   height: 45px;
   outline: none;
   border-radius: 3px;
@@ -64,7 +65,7 @@ body {
 }
 
 .inputField textarea {
-  width: 85%;
+  width: 100%;
   height: auto;
   outline: none;
   border-radius: 3px;
@@ -83,7 +84,16 @@ body {
   border-color: #8E49E8;
 }
 
-.inputField .icon {
+.header-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header-section .icon {
   width: 50px;
   height: 100%;
   border: none;
@@ -212,7 +222,7 @@ body {
 }
 
 .inputField .save-button {
-  padding: 1em 3em;
+  padding: 1em 1em 2.5em 1em;
   border-radius: 3px;
   border: none;
   outline: none;
