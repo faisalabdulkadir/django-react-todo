@@ -25,13 +25,20 @@ function App() {
   const toggleForm = () => {
     setShowForm(!showForm)
   }
-  
+
+  const taskInformation = (task) => {
+    setTaskList([...taskList, task]);
+    setShowForm(false);
+  }
+
   return (
     <div>
       <div className="wrapper">
-       <Header toggleForm={toggleForm}/>
-        {showForm ? <Form />: ''}
-        <Tasks taskList={taskList}/>
+        <Header toggleForm={toggleForm} />
+        {showForm ?
+          <Form
+            taskInformation={taskInformation} /> : ''}
+        <Tasks taskList={taskList} />
         <Footer taskList={taskList} />
       </div>
 
