@@ -104,8 +104,8 @@ body {
   background: #8E49E8;
   cursor: pointer;
   border-radius: 3px;
-  opacity: 0.6;
-  pointer-events: none;
+  opacity: 1;
+  pointer-events: auto;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
