@@ -9,6 +9,7 @@ import Header from './components/Header';
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [editTask, setEditTask] = useState('');
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/todos', {
@@ -23,7 +24,7 @@ function App() {
   }, [])
 
   const toggleForm = () => {
-    setShowForm(!showForm)
+    setShowForm(!showForm);
   }
 
   const taskInformation = (task) => {
@@ -31,17 +32,37 @@ function App() {
     setShowForm(false);
   }
 
+  const editButton = (task) => {
+    setEditTask(task);
+    setShowForm(true);
+  }
+
+  // const updatedInformation = (task) => {
+  //   const newTask = taskList.map((taskItem) => {
+  //     if (taskItem.id === task.id) {
+  //       return task;
+  //     }
+  //     return taskItem;
+  //   })
+  //   setEditTask(newTask);
+  //   console.log(editTask);
+  // }
+
   return (
     <div>
       <div className="wrapper">
         <Header toggleForm={toggleForm} />
         {showForm ?
           <Form
-            taskInformation={taskInformation} /> : ''}
-        <Tasks taskList={taskList} />
+            taskInformation={taskInformation}
+            editTask={editTask}
+          /> : ''}
+        <Tasks
+          taskList={taskList}
+          editButton={editButton}
+        />
         <Footer taskList={taskList} />
       </div>
-
     </div>
   );
 }

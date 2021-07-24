@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import APIService from '../APIService'
 
-function Form({ taskInformation }) {
+function Form({ taskInformation, updateInformation, editTask }) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
@@ -16,10 +16,10 @@ function Form({ taskInformation }) {
     APIService.InsertTask({ title, description, date, time })
       .then(resp => taskInformation(resp))
       .catch(error => console.log('error adding task'))
-      setTitle('');
-      setDescription('');
-      setTime('');
-      setDate('');
+  }
+
+  const updateTask = (task) => {
+    updateInformation(task)
 
   }
 
@@ -55,12 +55,20 @@ function Form({ taskInformation }) {
           value={time}
           onChange={e => setTime(e.target.value)}
         />
-        <button
-          className={readyToSave ? "save-button active" : "save-button"}
-          onClick={addTask}
-        >
-          Save Task
-        </button>
+        {editTask.id ?
+          (<button
+            className={readyToSave ? "save-button active" : "save-button"}
+            onClick={(task) => updateTask(task)}
+          >
+            Update Task
+          </button>) :
+          (<button
+            className={readyToSave ? "save-button active" : "save-button"}
+            onClick={addTask}
+          >
+            Save Task
+          </button>)
+        }
       </form>
     </div>
   )
