@@ -1,7 +1,7 @@
 import React from 'react'
 import { BiListPlus } from 'react-icons/bi'
 
-function Header({toggleForm}) {
+function Header({ toggleForm }) {
 
   return (
     <div className="header-section">
