@@ -24,6 +24,13 @@ function Form({ taskInformation, updateInformation, editTask }) {
       .catch(error => console.log('error adding task'))
   }
 
+  useEffect(() => {
+    setTitle(editTask.title);
+    setDescription(editTask.description)
+    setDate(editTask.date)
+    setTime(editTask.time)
+  }, [editTask])
+
   const updateTask = () => {
     onsubmit = (e) => {
       e.preventDefault()
@@ -32,13 +39,6 @@ function Form({ taskInformation, updateInformation, editTask }) {
       .then(resp => updateInformation(resp))
       .catch(error => console.log(error))
   }
-
-  useEffect(() => {
-    setTitle(editTask.title);
-    setDescription(editTask.description)
-    setDate(editTask.date)
-    setTime(editTask.time)
-  }, [editTask.title, editTask.description, editTask.date, editTask.time])
 
   return (
     <div className="inputField">
