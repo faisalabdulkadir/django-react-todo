@@ -24,9 +24,13 @@ function Form({ taskInformation, updateInformation, editTask }) {
       .catch(error => console.log('error adding task'))
   }
 
-  const updateTask = (task) => {
-    updateInformation(task)
-
+  const updateTask = () => {
+    onsubmit = (e) => {
+      e.preventDefault()
+    }
+    APIService.UpdateTask(editTask.id, { title, description, date, time })
+      .then(resp => updateInformation(resp))
+      .catch(error => console.log(error))
   }
 
   useEffect(() => {
@@ -71,7 +75,7 @@ function Form({ taskInformation, updateInformation, editTask }) {
         {editTask.id ?
           (<button
             className={readyToUpdate ? "save-button active" : "save-button"}
-            onClick={(task) => updateTask(task)}
+            onClick={updateTask}
           >
             Update Task
           </button>) :
