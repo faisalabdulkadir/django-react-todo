@@ -37,16 +37,16 @@ function App() {
     setShowForm(true);
   }
 
-  // const updatedInformation = (task) => {
-  //   const newTask = taskList.map((taskItem) => {
-  //     if (taskItem.id === task.id) {
-  //       return task;
-  //     }
-  //     return taskItem;
-  //   })
-  //   setEditTask(newTask);
-  //   console.log(editTask);
-  // }
+  const updateInformation = (task) => {
+    const newTask = taskList.map((taskItem) => {
+      if (taskItem.id === task.id) {
+        return task;
+      }
+      return taskItem;
+    })
+    setTaskList(newTask);
+    setShowForm(false);
+  }
 
   return (
     <div>
@@ -56,6 +56,7 @@ function App() {
           <Form
             taskInformation={taskInformation}
             editTask={editTask}
+            updateInformation={updateInformation}
           /> : ''}
         <Tasks
           taskList={taskList}
