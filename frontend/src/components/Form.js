@@ -21,7 +21,7 @@ function Form({ taskInformation, updateInformation, editTask }) {
     }
     APIService.InsertTask({ title, description, date, time })
       .then(resp => taskInformation(resp))
-      .catch(error => console.log('error adding task'))
+      .catch(error => console.log(error))
   }
 
   useEffect(() => {
