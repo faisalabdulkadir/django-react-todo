@@ -203,3 +203,101 @@ body{
 .inputField label {
     display: block;
 }
+
+.during-popup{
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+}
+
+.wrapper .PopUp{
+  position: fixed;
+
+  left: 35%;
+  top: 30%;
+  bottom: auto;
+  right: auto;
+
+
+  // mobile design for popup
+  // left: 2%;
+  // right: auto;
+  // top: 30%;
+  // bottom: auto;
+
+  width: fit-content;
+
+  border: none;
+  border-radius: 1em;
+  box-shadow: -2px 5px 5px #8E49E8;
+
+  background-color: #fff;
+
+  display: block;
+  align-items: center;
+
+  color: #011627;
+
+  margin: 20px 0;
+  height: fit-content;
+  padding: 1em 2em 0 1em;
+
+  .pu-content-container {
+    margin: 10px auto auto 10px;
+    text-align: center;
+  }
+
+}
+
+.PopUp .pu-button-container {
+  display: flex;
+  justify-content: center;
+  
+  .yes-button {
+    padding: 1em 1em 2.5em 1em ;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 1em 0 1em 2em ;
+    background: #8E49E8;
+    cursor: pointer;
+    user-select: none;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    height: 45px;
+    padding: 1em;
+
+    &:hover {
+      background: #fff;
+      color: #8E49E8;
+      border: 1px solid #8E49E8;
+    }
+  }
+
+  .no-button {
+    padding: 1em 1em 2.5em 1em ;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 1em 0 1em 1em ;
+    background: #8E49E8;
+    cursor: pointer;
+    user-select: none;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    height: 45px;
+    padding: 1em;
+
+    &:hover {
+      background: #fff;
+      color: #8E49E8;
+      border: 1px solid #8E49E8;
+    }
+  }
+}
