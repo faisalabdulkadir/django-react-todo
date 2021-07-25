@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import APIService from '../APIService'
 
 function Form({ taskInformation, updateInformation, editTask }) {
@@ -8,6 +8,12 @@ function Form({ taskInformation, updateInformation, editTask }) {
   const [time, setTime] = useState('')
 
   const readyToSave = title && description && date && time
+
+  const readyToUpdate =
+    (editTask.title !== title) ||
+    (editTask.description !== description) ||
+    (editTask.date !== date) ||
+    (editTask.time !== time)
 
   const addTask = () => {
     onsubmit = (e) => {
@@ -22,6 +28,13 @@ function Form({ taskInformation, updateInformation, editTask }) {
     updateInformation(task)
 
   }
+
+  useEffect(() => {
+    setTitle(editTask.title);
+    setDescription(editTask.description)
+    setDate(editTask.date)
+    setTime(editTask.time)
+  }, [editTask.title, editTask.description, editTask.date, editTask.time])
 
   return (
     <div className="inputField">
@@ -57,7 +70,7 @@ function Form({ taskInformation, updateInformation, editTask }) {
         />
         {editTask.id ?
           (<button
-            className={readyToSave ? "save-button active" : "save-button"}
+            className={readyToUpdate ? "save-button active" : "save-button"}
             onClick={(task) => updateTask(task)}
           >
             Update Task
