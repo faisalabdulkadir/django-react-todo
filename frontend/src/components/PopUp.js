@@ -1,7 +1,19 @@
 import React from 'react'
+import APIService from '../APIService';
 
-function PopUp(props) {
-  const { setPopUp } = props;
+function PopUp({ setPopUp, editTask, deleteInformation }) {
+
+
+  const deleteTask = () => {
+    onsubmit = (e) => {
+      e.preventDefault();
+    }
+    APIService.DeleteTask(editTask.id)
+      .then(() => deleteInformation(editTask))
+      .catch(error => console.log(error))
+    setPopUp(false);
+
+  }
 
   return (
     <div className="PopUp">
@@ -13,7 +25,7 @@ function PopUp(props) {
       {/* button controls */}
       <div className="pu-button-container">
         <button
-          onClick={() => setPopUp(false)}
+          onClick={deleteTask}
           className="yes-button"
         >
           Yes!
