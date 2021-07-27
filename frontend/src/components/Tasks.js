@@ -1,10 +1,14 @@
 import React from 'react'
 import { MdDelete, MdEdit } from 'react-icons/md'
 
+function Tasks({ taskList, editButton, deleteButton }) {
 
-function Tasks({ taskList, editButton }) {
   const editBtn = (task) => {
     editButton(task);
+  }
+
+  const deleteBtn = (task) => {
+    deleteButton(task);
   }
   return (
     <div>
@@ -18,7 +22,12 @@ function Tasks({ taskList, editButton }) {
             >
               <MdEdit />
             </i>
-            <i className="icon-delete"><MdDelete /></i>
+            <i
+              className="icon-delete"
+              onClick={() => deleteBtn(task)}
+            >
+              <MdDelete />
+            </i>
           </li>
         ))}
       </ul>

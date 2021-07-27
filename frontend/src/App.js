@@ -5,11 +5,13 @@ import Tasks from './components/Tasks';
 import Footer from './components/Footer';
 import Form from './components/Form';
 import Header from './components/Header';
+import PopUp from './components/PopUp';
 
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editTask, setEditTask] = useState('');
+  const [popUp, setPopUp] = useState(false);
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/todos', {
@@ -48,9 +50,26 @@ function App() {
     setShowForm(false);
   }
 
+  const deleteButton = (task) => {
+    setPopUp(true);
+    setEditTask(task);
+
+  }
+
+  const deleteInformation = (task) => {
+    const newData = taskList.filter((myTask) =>
+      myTask.id !== task.id)
+
+    setTaskList(newData);
+    setPopUp(false);
+    setEditTask('');
+  }
+
+  const duringPopUp = popUp ? " during-popup" : ""
+
   return (
     <div>
-      <div className="wrapper">
+      <div className={"wrapper" + duringPopUp}>
         <Header toggleForm={toggleForm} />
         {showForm ?
           <Form
@@ -58,10 +77,21 @@ function App() {
             editTask={editTask}
             updateInformation={updateInformation}
           /> : ''}
-        <Tasks
-          taskList={taskList}
-          editButton={editButton}
-        />
+        {taskList.length === 0 ?
+          <p>No task to display</p> :
+          (<Tasks
+            taskList={taskList}
+            editButton={editButton}
+            deleteButton={deleteButton}
+          />)}
+        {popUp ?
+          <PopUp
+            setPopUp={setPopUp}
+            editTask={editTask}
+            deleteInformation={deleteInformation}
+            taskList={taskList}
+            setTaskList={setTaskList}
+          /> : ''}
         <Footer taskList={taskList} />
       </div>
     </div>
