@@ -177,6 +177,23 @@ body {
   right: 3em;
 }
 
+.todoList li .icon-view {
+  position: absolute;
+  right: -45px;
+  background: #721ce3;
+  width: 45px;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.todoList li:hover .icon-view {
+  right: 6em;
+}
+
 .wrapper .footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -353,5 +370,9 @@ body {
   background: #fff;
   color: #8E49E8;
   border: 1px solid #8E49E8;
+}
+
+.PopUp .description {
+  font-size: 1.2em;
 }
 /*# sourceMappingURL=styles.css.map */
