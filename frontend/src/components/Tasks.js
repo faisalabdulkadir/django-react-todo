@@ -1,7 +1,8 @@
 import React from 'react'
 import { MdDelete, MdEdit, MdPageview } from 'react-icons/md'
+import Loading from './Loading';
 
-function Tasks({ taskList, editButton, deleteButton, viewTask }) {
+function Tasks({ taskList, editButton, deleteButton, viewTask, loading }) {
 
   const editBtn = (task) => {
     editButton(task);
@@ -16,7 +17,8 @@ function Tasks({ taskList, editButton, deleteButton, viewTask }) {
   }
   return (
     <div>
-      <ul className="todoList">
+      {loading ? <Loading /> :
+      (<ul className="todoList">
         {taskList.map((task) => (
 
           <li key={task.id}>{task.title}
@@ -40,7 +42,7 @@ function Tasks({ taskList, editButton, deleteButton, viewTask }) {
             </i>
           </li>
         ))}
-      </ul>
+      </ul>)}
     </div>
   )
 }

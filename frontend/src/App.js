@@ -14,6 +14,7 @@ function App() {
   const [editTask, setEditTask] = useState('');
   const [popUp, setPopUp] = useState(false);
   const [showTask, setShowTask] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/todos', {
@@ -25,6 +26,7 @@ function App() {
       .then(response => response.json())
       .then(response => setTaskList(response))
       .catch(error => console.log(error))
+    setLoading(false);
   }, [])
 
   const toggleForm = () => {
@@ -95,6 +97,7 @@ function App() {
             editButton={editButton}
             deleteButton={deleteButton}
             viewTask={viewTask}
+            loading={loading}
           />)}
         {popUp ?
           <PopUp
@@ -108,7 +111,8 @@ function App() {
             taskDetail={editTask}
             setEditTask={setEditTask} /> :
           ''}
-        <Footer taskList={taskList} />
+        <Footer
+          taskList={taskList} />
       </div>
     </div>
   );
