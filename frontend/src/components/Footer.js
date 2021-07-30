@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Footer({taskList}) {
+function Footer({ taskList }) {
   return (
     <div>
       <div className="footer">
