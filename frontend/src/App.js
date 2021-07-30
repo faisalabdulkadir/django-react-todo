@@ -6,12 +6,14 @@ import Footer from './components/Footer';
 import Form from './components/Form';
 import Header from './components/Header';
 import PopUp from './components/PopUp';
+import TaskDetails from './components/TaskDetails';
 
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editTask, setEditTask] = useState('');
   const [popUp, setPopUp] = useState(false);
+  const [showTask, setShowTask] = useState(false);
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/todos', {
@@ -27,6 +29,7 @@ function App() {
 
   const toggleForm = () => {
     setShowForm(!showForm);
+    setEditTask('');
   }
 
   const taskInformation = (task) => {
@@ -48,6 +51,7 @@ function App() {
     })
     setTaskList(newTask);
     setShowForm(false);
+    setEditTask('');
   }
 
   const deleteButton = (task) => {
@@ -65,6 +69,11 @@ function App() {
     setEditTask('');
   }
 
+  const viewTask = (task) => {
+    setShowTask(true);
+    setEditTask(task);
+  }
+
   const duringPopUp = popUp ? " during-popup" : ""
 
   return (
@@ -76,6 +85,8 @@ function App() {
             taskInformation={taskInformation}
             editTask={editTask}
             updateInformation={updateInformation}
+            setShowForm={setShowForm}
+            setEditTask={setEditTask}
           /> : ''}
         {taskList.length === 0 ?
           <p>No task to display</p> :
@@ -83,15 +94,20 @@ function App() {
             taskList={taskList}
             editButton={editButton}
             deleteButton={deleteButton}
+            viewTask={viewTask}
           />)}
         {popUp ?
           <PopUp
             setPopUp={setPopUp}
             editTask={editTask}
             deleteInformation={deleteInformation}
-            taskList={taskList}
-            setTaskList={setTaskList}
           /> : ''}
+        {showTask ?
+          <TaskDetails
+            setShowTask={setShowTask}
+            taskDetail={editTask}
+            setEditTask={setEditTask} /> :
+          ''}
         <Footer taskList={taskList} />
       </div>
     </div>
