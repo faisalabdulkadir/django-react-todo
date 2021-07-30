@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import APIService from '../APIService'
 
-function Form({ taskInformation, updateInformation, editTask }) {
+function Form({ taskInformation, updateInformation, editTask, setShowForm, setEditTask }) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
@@ -40,6 +40,15 @@ function Form({ taskInformation, updateInformation, editTask }) {
       .catch(error => console.log(error))
   }
 
+  const closeForm = () => {
+    onsubmit = (e) => {
+      e.preventDefault();
+    }
+
+    setShowForm(false)
+    setEditTask('')
+  }
+
   return (
     <div className="inputField">
       <form>
@@ -73,12 +82,23 @@ function Form({ taskInformation, updateInformation, editTask }) {
           onChange={e => setTime(e.target.value)}
         />
         {editTask.id ?
-          (<button
-            className={readyToUpdate ? "save-button active" : "save-button"}
-            onClick={updateTask}
-          >
-            Update Task
-          </button>) :
+          (<div className="update-button-section">
+            <button
+              type="submit"
+              className={readyToUpdate ? "update-button active" : "update-button"}
+              onClick={updateTask}
+            >
+              Update Task
+            </button>
+            <div className="divider" />
+            <button
+              type="button"
+              className={"close-button"}
+              onClick={closeForm}
+            >
+              Close
+            </button>
+          </div>) :
           (<button
             className={readyToSave ? "save-button active" : "save-button"}
             onClick={addTask}
