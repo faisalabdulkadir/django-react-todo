@@ -5,7 +5,7 @@ function Header({ toggleForm }) {
 
   return (
     <div className="header-section">
-      <header>Todo App</header>
+      <header>Todo App Again</header>
       <button
         className="icon"
         onClick={toggleForm}
